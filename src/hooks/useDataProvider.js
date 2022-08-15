@@ -1,12 +1,13 @@
-// Managment API
-
+/** Imports */
 import { useEffect, useReducer } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
+/** Exports */
 export const LOADING = 'LOADING';
 export const SUCCESS = 'SUCCESS';
 export const ERROR = 'ERROR';
 
+/** Data reducers for API */
 const dataReducer = (state, action) => {
     const { type, payload } = action;
     switch(type){
@@ -28,6 +29,7 @@ const dataReducer = (state, action) => {
     }
 }
 
+/** Check and save the data from the API */
 export const useDataProvider = initialUrl => {
     const initialState = {
         url: initialUrl,
@@ -44,7 +46,6 @@ export const useDataProvider = initialUrl => {
 
     useEffect(() => {
         if(statusData === LOADING && url){
-            console.log('ejecutando esto');
             fetch(url)
             .then(resp => resp.json())
             .then(data => dispatch({
@@ -69,7 +70,6 @@ export const useDataProvider = initialUrl => {
                 url: url
             }
         })
-        console.log('ejecutando loading');
     }
 
     return [state, loading];

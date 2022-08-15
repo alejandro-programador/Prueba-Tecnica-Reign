@@ -1,23 +1,31 @@
+/** Imports */
 import React, { useEffect } from 'react'
 import { Button, Grid } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeOptAction } from '../redux/reducers/Menu';
 import { getFavoritesAction } from '../redux/reducers/MyFaves';
 
+/**
+ * Component menu.
+ * @function
+ * @name Menu
+*/
 const Menu = () => {
 
-  
   const dispatch = useDispatch();
   const contentType = useSelector( state => state.Menu.contentType );
   
-  useEffect( () => {
-    dispatch(getFavoritesAction());
-  },[] );
-
   const activeBtn = { borderColor: 'primary.main', color: 'primary.main', width: '100%', textTransform: 'capitalize' };
   const disabledBtn = { borderColor: 'secondary.main', color: 'secondary.dark', width: '100%', textTransform: 'capitalize' };
   const allBtnBorder = { borderRadius: '.3rem 0 0 .3rem' };
   const favesBtnBorder = { borderRadius: '0 .3rem .3rem 0' };
+  
+  /**
+    * Get favorites.
+   */
+  useEffect( () => {
+    dispatch(getFavoritesAction());
+  },[] );
 
   return (
     <>

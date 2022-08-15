@@ -1,8 +1,9 @@
+/** Imports */
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-// reducers
+/** Reducers */
 import Menu from './reducers/Menu';
 import MyFaves from './reducers/MyFaves';
 import Filter from './reducers/Filter';
@@ -15,6 +16,7 @@ const rootReducers = combineReducers({
     Content
 });
 
+/** Create store */
 const store = createStore(rootReducers, composeWithDevTools(
     applyMiddleware(thunk)
 ));

@@ -1,6 +1,12 @@
+/** Imports */
 import React from 'react'
 import { Typography } from '@mui/material';
 
+/**
+ * Component header.
+ * @function
+ * @name Header
+ */
 const Header = () => {
   return (
     <>

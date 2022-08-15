@@ -1,5 +1,13 @@
+/** Imports */
 import { useState, useEffect } from "react";
 
+/**
+  * Intersecting the screen size.
+  * @function
+  * @name useScreen
+  * @param {Object} reference 
+  * @param {String} margin 
+ */
 export const useScreen = (reference, margin) => {
     const [isShowing, setShowing] = useState(false);
 

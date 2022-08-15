@@ -1,9 +1,9 @@
 /** Imports */
 import React, { useState, useEffect } from 'react'
 import { Grid, Typography } from '@mui/material';
-import AccessTimeIcon from '@mui/icons-material/AccessTimeIcon';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorderIcon';
-import FavoriteIcon from '@mui/icons-material/FavoriteIcon';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import {API_DATA} from '../static/API_PETITION';
 import { styled } from '@mui/system';
 import moment from 'moment';
@@ -42,13 +42,12 @@ const ContentGrid = styled(Grid)(({ theme }) => `
 `)
 
 /**
- * Shows the content.
+ * Component content.
  * @function
  * @name Content
  */
 const Content = (props) => {
 
-  const [ news, setNews ] = useState([]);
   const [faveIcon, setFaveIcon] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const { story_title, story_url, created_at, author, id } = props;
@@ -60,6 +59,7 @@ const Content = (props) => {
     * Add a post to favorite.
     * @function
     * @name ADD_TO_FAVES
+    * @param {Object} data 
    */
   const ADD_TO_FAVES = data => {
     setIsFavorite(true);
@@ -85,6 +85,7 @@ const Content = (props) => {
     * Delete a post from favorites.
     * @function
     * @name DELETE_OF_FAVES
+    * @param {Object} data 
    */
   const DELETE_OF_FAVES = data => {
     let faves = JSON.parse(localStorage.getItem('my_faves'));
@@ -130,37 +131,43 @@ const Content = (props) => {
         minutes = current.diff(post_date, 'minutes'),
         seconds = current.diff(post_date, 'seconds');
 
-    RETURN_DATE(weeks, days, hours, minutes, seconds);
+    return RETURN_DATE(weeks, days, hours, minutes, seconds);
   }
 
-  const borderIcon = () => {
+  /**
+    * Action on click in the full heart.
+    * @function
+    * @name FULL_ICON
+   */
+  const FULL_ICON = () => {
     dispatch(deleteFavoriteAction(props));
     setFaveIcon(false);
   }
 
-  const fullIcon = () => {
+  /**
+    * Action on click in the bordered heart.
+    * @function
+    * @name BORDER_ICON
+   */
+  const BORDER_ICON = () => {
     dispatch(addFavoriteAction(props));
     setFaveIcon(true);
   }
 
-  const openLink = url => {
+  /**
+    * Open link in new window.
+    * @function
+    * @name OPEN_LINK
+   */
+  const OPEN_LINK = url => {
     window.open(url, '_blank');
   }
-
-  useEffect( () => {
-    const PETITION = async () => {
-      const data = await API_DATA().then(response => response.data.hits);
-      setNews(data);
-    }
-
-    PETITION();
-  }, [] );
 
   return (
     <>
       <ContentGrid item xs={12} md={6} sx={{ mb: 3, overflow: 'hidden', cursor: 'pointer' }}>
             <Grid container sx={{ border: '2px solid', borderColor: 'secondary.dark', borderRadius: '.5rem', width: '95%', height: '8rem' }}>
-              <Grid item xs={10} sx={{ pt: 2, px: 2 }} onClick={ () => openLink(story_url)}>
+              <Grid item xs={10} sx={{ pt: 2, px: 2 }} onClick={ () => OPEN_LINK(story_url)}>
                 <Grid container>
                   <Grid item xs={12} sx={{ display: 'flex', alignItems: 'end' }}>
                       <AccessTimeIcon sx={{ mr: 1 }} /> 
@@ -179,9 +186,9 @@ const Content = (props) => {
                 {
                   (menuOpts == 'all') ? 
                     (!faveIcon && !isFavorite) ?
-                      <FavesBorderIcon onClick={ () => fullIcon() } />
+                      <FavesBorderIcon onClick={ () => BORDER_ICON() } />
                     :
-                      <FavesIcon onClick={ () => borderIcon() } />
+                      <FavesIcon onClick={ () => FULL_ICON() } />
                   :
                   null
                 }

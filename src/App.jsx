@@ -1,3 +1,4 @@
+/** Imports */
 import React, {useState} from 'react'
 import Header from './components/Header';
 import Menu from './components/Menu';
@@ -7,6 +8,11 @@ import Filter from './components/Filter';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom'
 
+/**
+ * Component app.
+ * @function
+ * @name App
+ */
 function App() {
 
   const menuOpts = useSelector( state => state.Menu.contentType );

@@ -1,3 +1,4 @@
+/** Imports */
 import React, {useState} from 'react'
 import {
     ERROR
@@ -6,13 +7,18 @@ import Content from '../components/Content';
 import { Grid, CircularProgress, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 
+/**
+  * It print the API data.
+  * @function
+  * @name List
+  * @param {Object} props 
+ */
 export const List = (props) => {
 
-    const MY_FAVES_DATA = useSelector( state => state.MyFaves.myFaves );
-    const menuOpts = useSelector( state => state.Menu.contentType );
-    const category = useSelector( state => state.Filter.category );
-    const posts = useSelector( state => state.Content.content );
-
+  const MY_FAVES_DATA = useSelector( state => state.MyFaves.myFaves );
+  const menuOpts = useSelector( state => state.Menu.contentType );
+  const category = useSelector( state => state.Filter.category );
+  const posts = useSelector( state => state.Content.content );
 
   return (
     <section className='characters-list'>
@@ -38,7 +44,7 @@ export const List = (props) => {
         } ) }
 
         { 
-            (!MY_FAVES_DATA && menuOpts == 'all') &&
+            (!MY_FAVES_DATA && menuOpts == 'my_faves') &&
             <Typography>You not have favorites...</Typography>
         }
         
@@ -75,6 +81,7 @@ export const List = (props) => {
                 <p>An error has occurred...</p>
             ) }
         </section>
+        
     </section>
   )
 }

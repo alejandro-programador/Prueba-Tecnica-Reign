@@ -1,7 +1,13 @@
+/** Imports */
 import axios from 'axios';
 
+/**
+ * Return the API response.
+ * @function
+ * @name API_DATA
+ * @param {String} category
+*/
 export const API_DATA = async (category=null) => {
-
     let URL;
 
     URL = (category === 'angular' || category === 'react' || category === 'vue') ? 
