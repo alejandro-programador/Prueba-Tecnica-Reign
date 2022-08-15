@@ -10,6 +10,7 @@ const Filter = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  
   const changeCategory = (value) => {
     dispatch(changeCategoryAction(value));
   }

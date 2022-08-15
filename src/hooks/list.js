@@ -38,7 +38,7 @@ export const List = (props) => {
         } ) }
 
         { 
-            (!MY_FAVES_DATA) &&
+            (!MY_FAVES_DATA && menuOpts == 'all') &&
             <Typography>You not have favorites...</Typography>
         }
         
