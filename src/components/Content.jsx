@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, Link } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -19,6 +19,12 @@ const FavesIcon = styled(FavoriteIcon)(({ theme }) => `
 color: red;
 font-size: 2rem;
 cursor: pointer;
+`)
+
+const ContentGrid = styled(Grid)(({ theme }) => `
+    :hover{
+        opacity: .6;
+    }
 `)
 
 const Content = (props) => {
@@ -102,6 +108,10 @@ const Content = (props) => {
     setFaveIcon(true);
   }
 
+  const openLink = url => {
+    window.open(url, '_blank');
+  }
+
   useEffect( () => {
     const PETITION = async () => {
       const data = await API_DATA().then(response => response.data.hits);
@@ -113,7 +123,7 @@ const Content = (props) => {
 
   return (
     <>
-      <Grid item xs={12} md={6} sx={{ mb: 3, overflow: 'hidden' }}>
+      <ContentGrid item xs={12} md={6} sx={{ mb: 3, overflow: 'hidden', cursor: 'pointer' }} onClick={ () => openLink(story_url)}>
             <Grid container sx={{ border: '2px solid', borderColor: 'secondary.dark', borderRadius: '.5rem', width: '95%', height: '8rem' }}>
               <Grid item xs={10} sx={{ pt: 2, px: 2 }}>
                 <Grid container>
@@ -142,7 +152,7 @@ const Content = (props) => {
                 }
               </Grid>
             </Grid>
-      </Grid>
+      </ContentGrid>
     </>
   )
 }

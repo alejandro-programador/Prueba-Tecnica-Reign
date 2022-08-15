@@ -15,7 +15,13 @@ const Filter = () => {
   }
 
   useEffect( () => {
+    let filter = localStorage.getItem('reignFilter');
+    if(filter) dispatch(changeCategoryAction(JSON.parse(filter)));
+  }, [] );
+
+  useEffect( () => {
     navigate(`${category}`);
+    localStorage.setItem('reignFilter',JSON.stringify(category));
   },[category] );
 
   return (
