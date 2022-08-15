@@ -1,14 +1,16 @@
 import React, { useRef } from 'react';
 import {List} from './list';
 import {useInfinityScrollCharacters} from './useInfinityScrollCharacters';
+import { useDispatch, useSelector } from 'react-redux';
 
-export const Characters = () => {
+export const Characters = (props) => {
     const elementToObserveRef = useRef();
     const charactersDataRef = useRef([]);
 
     const [state] = useInfinityScrollCharacters(
         elementToObserveRef,
-        charactersDataRef
+        charactersDataRef,
+        props.category
     );
 
     const {

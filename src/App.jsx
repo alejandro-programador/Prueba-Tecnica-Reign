@@ -3,9 +3,9 @@ import Header from './components/Header';
 import Menu from './components/Menu';
 import Content from './components/Content';
 import { Grid } from '@mui/material';
-import { Characters } from './hooks';
 import Filter from './components/Filter';
 import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom'
 
 function App() {
 
@@ -36,7 +36,7 @@ function App() {
               (menuOpts == 'all') &&
                 <Filter />
             }
-            <Characters />
+            <Outlet />
           </Grid>
         </Grid>
       </Grid>

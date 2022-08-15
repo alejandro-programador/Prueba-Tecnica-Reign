@@ -1,6 +1,7 @@
 // Managment API
 
 import { useEffect, useReducer } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 
 export const LOADING = 'LOADING';
 export const SUCCESS = 'SUCCESS';
@@ -39,8 +40,11 @@ export const useDataProvider = initialUrl => {
         statusData
     } = state;
 
+    const category = useSelector( state => state.Filter.category );
+
     useEffect(() => {
         if(statusData === LOADING && url){
+            console.log('ejecutando esto');
             fetch(url)
             .then(resp => resp.json())
             .then(data => dispatch({
@@ -56,14 +60,17 @@ export const useDataProvider = initialUrl => {
                 }
             }))
         }
-    }, [url]);
+    }, [url, category]);
 
-    const loading = url => dispatch({
-        type: LOADING,
-        payload: {
-            url: url
-        }
-    })
+    const loading = url => {
+        dispatch({
+            type: LOADING,
+            payload: {
+                url: url
+            }
+        })
+        console.log('ejecutando loading');
+    }
 
     return [state, loading];
 

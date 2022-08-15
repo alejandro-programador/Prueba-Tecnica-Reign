@@ -5,10 +5,14 @@ import thunk from 'redux-thunk';
 // reducers
 import Menu from './reducers/Menu';
 import MyFaves from './reducers/MyFaves';
+import Filter from './reducers/Filter';
+import Content from './reducers/Content';
 
 const rootReducers = combineReducers({
     Menu,
-    MyFaves
+    MyFaves,
+    Filter,
+    Content
 });
 
 const store = createStore(rootReducers, composeWithDevTools(
