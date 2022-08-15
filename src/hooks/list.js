@@ -64,13 +64,15 @@ export const List = (props) => {
         </Grid>
         
         <section ref={props.elementToObserveRef} className='loading'>
-            <p>
-                <CircularProgress sx={{ mr: 1 }} />
-                Load a new page...
-            </p>
+            {
+                menuOpts == 'all' &&
+                    <p>
+                        <CircularProgress sx={{ mr: 1 }} />
+                        Load a new page...
+                    </p>
+            }
             { props.status === ERROR && (
-                // <p>{error.message}</p>
-                <p>An error here...</p>
+                <p>An error has occurred...</p>
             ) }
         </section>
     </section>

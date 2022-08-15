@@ -113,7 +113,7 @@ const Content = (props) => {
 
   return (
     <>
-      <Grid item xs={6} sx={{ mb: 3 }}>
+      <Grid item xs={12} md={6} sx={{ mb: 3, overflow: 'hidden' }}>
             <Grid container sx={{ border: '2px solid', borderColor: 'secondary.dark', borderRadius: '.5rem', width: '95%', height: '8rem' }}>
               <Grid item xs={10} sx={{ pt: 2, px: 2 }}>
                 <Grid container>
@@ -126,7 +126,7 @@ const Content = (props) => {
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid item xs={2} sx={{ backgroundColor: 'secondary.main', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '0 .5rem .5rem 0' }}>
+              <Grid item xs={2} sx={{ backgroundColor: 'secondary.main', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '0 .5rem .5rem 0', height: '100%' }}>
                 {
                   (menuOpts == 'my_faves') &&
                   <FavesIcon onClick={ () => dispatch(deleteFavoriteAction(props)) } />
