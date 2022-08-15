@@ -22,6 +22,7 @@ cursor: pointer;
 `)
 
 const ContentGrid = styled(Grid)(({ theme }) => `
+    font-family: Roboto;
     :hover{
         opacity: .6;
     }
@@ -123,16 +124,16 @@ const Content = (props) => {
 
   return (
     <>
-      <ContentGrid item xs={12} md={6} sx={{ mb: 3, overflow: 'hidden', cursor: 'pointer' }} onClick={ () => openLink(story_url)}>
+      <ContentGrid item xs={12} md={6} sx={{ mb: 3, overflow: 'hidden', cursor: 'pointer' }}>
             <Grid container sx={{ border: '2px solid', borderColor: 'secondary.dark', borderRadius: '.5rem', width: '95%', height: '8rem' }}>
-              <Grid item xs={10} sx={{ pt: 2, px: 2 }}>
+              <Grid item xs={10} sx={{ pt: 2, px: 2 }} onClick={ () => openLink(story_url)}>
                 <Grid container>
                   <Grid item xs={12} sx={{ display: 'flex', alignItems: 'end' }}>
                       <AccessTimeIcon sx={{ mr: 1 }} /> 
                       <Typography variant='caption'>{calculateDate(created_at)} ago by {author}</Typography>
                   </Grid>
                   <Grid item xs={12} sx={{ pt: 1 }}>
-                      <Typography variant='subtitle2'><b>{story_title}</b></Typography>
+                      <Typography variant='subtitle2' sx={{ color: 'secondary.dark' }}><b>{story_title}</b></Typography>
                   </Grid>
                 </Grid>
               </Grid>

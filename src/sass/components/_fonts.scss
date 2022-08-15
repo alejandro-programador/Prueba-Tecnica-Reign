@@ -1,0 +1,31 @@
+// Identifier
+@use 'brandname' as bn;
+
+// Font names
+$Baskerv1: bn.$brand + '-' + 'baskerv1';
+$Baskerv2: bn.$brand + '-' + 'baskerv2';
+$Baskervi: bn.$brand + '-' + 'baskervi';
+
+// Fonts
+@mixin font-face($selector,$filename) {
+  @font-face{
+    font-family: $selector;
+    src: url('../assets/fonts/' + $filename);
+  }
+}
+
+// Fonts class
+@mixin font($selector) {
+  .#{$selector} {
+    font-family: $selector;
+  }
+}
+ 
+// Includes
+@include font-face($Baskerv1, 'Baskerv1.ttf');
+@include font-face($Baskerv2, 'Baskerv2.ttf');
+@include font-face($Baskervi, 'Baskervi.ttf');
+
+@include font($Baskerv1);
+@include font($Baskerv2);
+@include font($Baskervi);
